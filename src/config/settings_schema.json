@@ -1,0 +1,34 @@
+[
+  {
+    "name" : "theme_info",
+    "theme_name": "Biro Theme",
+    "theme_author": "Fellipe Guimarães",
+    "theme_version": "1.0",
+    "theme_documentation_url": "https://codeby.com.br/",
+    "theme_support_url": "http://codeby.com.br/"
+  },
+  {
+    "name": {
+      "pt-Br": "Cores",
+      "en": "Colors"
+    },
+    "settings": [
+          {
+            "type": "header",
+            "content": {
+              "pt-BR": "Texto",
+              "en": "Text"
+            }
+          },
+          {
+            "type": "color",
+            "id": "color_primary_text",
+            "label": {
+              "pt-BR": "Cor do Texto",
+              "en": "Text Color"
+            },
+            "default": "#0C32B7"
+          }
+    ]
+  }
+]

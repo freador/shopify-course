@@ -1,0 +1,134 @@
+<footer class="mt2 flex flex-column">
+    <div class="__f-aboutus-section bg-light-gray">
+        <section class="pv4">
+            <div class="cby-container">
+                <div class="row">
+                    <div class="center flex flex-column flex-row-l flex-wrap justify-around mw-980-l">
+                            {% for link in linklists[section.settings.menu].links %}
+                                <div class="__f-column tc tl-l accordion"> 
+                                {% comment %} if have links it's a sub menu{% endcomment %}
+                                {% if link.links != blank %}
+                                    {% comment %} mount the menu{% endcomment %}
+                                    <label for="institucional"
+                                    class="db pb3 ttu f4 f6-l fw6 fw7-l almost-black color-6f-l accordion-title">
+                                    {{ link.title }}</label>
+                                    {% comment %} make a each for each submenu{% endcomment %}
+                                    <ul class="accordion-content">
+                                    {% for childlink in link.links %}
+                                        {% comment %} mount the submenu {% endcomment %}
+                                        <li class="pb3 pb2-l">
+                                            <a class="ttu f5 f6-l color-6f" href="{{ childlink.url }}">
+                                                {{ childlink.title }}
+                                            </a>
+                                        </li>                                        
+                                    {% endfor %}
+                                    </ul>
+                                    
+                                {% else %}
+                                    {% comment %} just mount a link{% endcomment %}
+                                    <a href="{{ link.url }}" class="menu-item-wrap">
+                                        <div class="menu-item">{{ link.title }} </div>
+                                        <div class="menu-item-deco-line"></div>
+                                    </a>
+                                {% endif %}
+                                
+                                </div>
+                                <div class="__f-column __f-v_divider hidden-xs" 
+                                style="width: 1px;background-color: #d8d8d8;"></div>
+                            {% endfor %}                                              
+                       
+                        <div class="__f-column bb b--sh-moon-gray mt4 pb4 pb0-l bb-0-l mt0-l">
+                            <div class="flex flex-row flex-column-l flex-wrap justify-center">
+                            {%- if section.blocks.size <= 0 -%}
+                                <div>Sem conteudo2 :(</div>
+                            {%- else -%}
+                                {%- for block in section.blocks -%}
+                                    <a class="mb4-l mr3 mr0-l" href="{{block.settings.button_link}}">
+                                        <figure class="mv0 mh2"><img 
+                                        src="{{block.settings.image | img_url: '300x300'}}">
+                                            <figcaption
+                                                class="tc ttu underline no-underline-l fw6 fw7-l f6 black color-6f-l">
+                                                {{block.settings.text_blog}}
+                                            </figcaption>
+                                        </figure>
+                                    </a>
+                                {% endfor %}
+                            {%- endif -%}
+                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="pb4 pv3-l">
+            <div class="cby-container">
+                <div class="row">
+                    <div class="center flex flex-row flex-wrap justify-center">
+                        <div class="w-100 mw-980-l">
+                            <p class="color-6f ttu f6 tc mb4 f7-l lh-2-l"></p>
+                            <p class="color-6f ttu f6 tc f7-l"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</footer>
+
+{% schema %}
+    {
+        "name": "FooterB",
+        "max_blocks": 3,
+        "settings": [
+            {
+                "type": "header",
+                "content": "Footer"
+            },
+            {
+                "type": "link_list",
+                "id": "menu",
+                "label": "Footer Menu",
+                "default": "footer"
+            }
+        ],
+
+        "blocks": [
+            {
+                "type": "image",
+                "name": "Image Footer",
+                "settings": [
+                    {
+                        "type": "image_picker",
+                        "id": "image",
+                        "label": "image"
+
+                    },
+                    {
+                        "type": "url",
+                        "id": "button_link",
+                        "label": "Url"
+                    },
+                    {
+                        "type": "text",
+                        "id": "text_blog",
+                        "label": "Text"
+                    }
+                ]
+            }
+        ],
+        "presets": [
+            {
+                "name": "footerB",
+                "category": "Footer",
+                "blocks": [
+                    {
+                        "type": "image"
+                    },
+                    {
+                        "type": "image"
+                    }
+                ]
+            }
+        ]
+    }
+{% endschema%}

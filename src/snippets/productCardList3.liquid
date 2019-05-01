@@ -1,0 +1,39 @@
+<li>
+  <div class="product-thumb">
+    <div class="product-image _cby-fake-loaded">
+      <a class="full-width-link imagemVerso" href="{{ product.url | within: collection }}">
+        <img class="list-view-item__image" src="{{ product.featured_image.src | img_url: '95x95', scale: 2 }}">
+        
+      </a>
+      <a class="full-width-link imagemVerso" href="{{ product.url | within: collection }}">
+        <button type="button" class="shelve-buy-button white z-4 pointer absolute left-0 bottom-0 bw0 ttu tc pv2 w-100 bg-black">
+        <span>Buy</span>
+        </button>
+      </a>
+
+    </div>
+    <div class="product-description">
+          <h3 class="product-name">
+              <a title="{{ product.title }}" href="{{ product.url }}">
+                  {{ product.title }}
+              </a>
+          </h3>
+          
+                      
+            <a class="product-price" href="{{ product.url }}">
+              <span class="bestPrice dib">
+
+                {% if product.available and product.price > 0 %}
+                      
+                  {{ product.price }}
+
+                {%else%}
+
+                    <div class="list-view-item__sold-out">sold out</div>
+
+                {% endif %}                            
+              </span>
+          </a> 
+    </div>
+  </div>
+</li>

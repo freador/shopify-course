@@ -1,0 +1,85 @@
+<script src="{{ 'slick.min.js' | asset_url }}"></script>
+<div data-section-id="{{ section.id }}"
+ data-section-type="slideshow-section" class="single-item">
+ 
+  {%- if section.blocks.size <= 0 -%}
+
+    <div>Sem conteudo :(</div>
+  {%-else-%}
+    <div class="biroslideshow_slide">
+        {%- for block in section.blocks -%}
+            <div>
+                <img src="{{block.settings.image | img_url: '1000x1000'}}"/>
+            </div>
+        {%- endfor -%}
+    </div>
+  {%- endif -%}
+
+</div>
+
+
+
+<script>
+    $('.biroslideshow_slide').slick();
+</script>
+
+
+{% schema %}
+    {
+        "name": "biroslideshow",
+        "max_blocks": 6,
+        "settings": [
+            {
+                "type": "select",
+                "id": "slideshow_height",   
+                "label": "Slide Height",
+                "default": "adapt",
+                "info": "info about content above",
+                "options": [
+                    {
+                        "label": "adapt",
+                        "value": "adapt"
+                    },
+                    {
+                        "label": "small",
+                        "value": "small"
+                    }
+                ]
+            }
+        ],
+
+        "blocks": [
+            {
+                "type": "image",
+                "name": "Image slide",
+                "settings": [
+                    {
+                        "type": "image_picker",
+                        "id": "image",
+                        "label": "image"
+
+                    },
+                    {
+                        "type": "url",
+                        "id": "button_link",
+                        "label": "Url"
+                    }
+                ]
+            }
+        ],
+        "presets": [
+            {
+                "name": "biroslideshow",
+                "category": "Image",
+                "blocks": [
+                    {
+                        "type": "image"
+                    },
+                    {
+                        "type": "image"
+                    }
+                ]
+            }
+        ]
+    }
+{% endschema %}

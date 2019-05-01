@@ -1,0 +1,64 @@
+<div class="cby-container books">
+    <div class="row">
+        {%- if section.blocks.size <= 0 -%}
+            <div>Sem conteudo :(</div>
+        {%- else -%}
+            {%- for block in section.blocks -%}
+                <div class="box-banner">
+                    <a href="{{block.settings.button_link}}">
+                        <img width="33%" height="33%"
+                        
+                        alt="Fashion Book"
+                        src="{{block.settings.image | img_url: '1000x1000'}}"
+                        complete="complete">
+                    </a>
+                </div>
+            {% endfor %}
+        {%- endif -%}
+    </div>
+</div>
+
+    {% schema %}
+        {
+            "name": "tree-rows-section",
+            "max_blocks": 3,
+            "settings":[
+                {
+                    "type": "text",
+                    "id": "tree-rows-text",
+                    "label": "Text",
+                    "default": "example",                
+                    "info": "show your test"
+                }
+            ],
+            "blocks": [
+                {
+                    "type": "image",
+                    "name": "banner_image",
+                    "settings": [
+                        {
+                            "type": "image_picker",
+                            "id": "image",
+                            "label": "image"                            
+                        },
+                        {
+                            "type": "url",
+                            "id": "button_link",
+                            "label": "url"                           
+                        }
+                    ]
+                }
+            ],
+            "presets": [
+                {
+                    "name": "tree-rows-section",
+                    "category": "Banners",
+                    "blocks": [
+                        {
+                            "type": "image"
+                        }
+                    ]
+                }
+            ]
+        }
+    {% endschema%}

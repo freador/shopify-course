@@ -1,0 +1,36 @@
+
+<div data-section-id="{{ section.id }}" data-section-type="collection-template" class="search-main-section" id="shelf">
+
+    <div class="cby-container">
+
+        <div class="row">
+
+            <div class="search-main fl w-100">
+                <div class="search-results" id="shelf_container" width="100%">
+                    <div class="shelf-search" id="ResultItems_48">
+                        <div class="shelf-search n6colunas">
+                            <ul>
+                                {% for product in collection.products %}
+                                    
+                                    {% include 'productCardList3', product: product %}
+                                    
+                                    {% if collection.handle == 'all' and collection.all_vendors.size == 0 and collection.all_types.size == 0%}
+                                    {% else %}
+                                        {%- assign is_empty_collection = true -%}
+                                    {%endif%}
+                                {% else %}
+                                    {% comment %} If don't have any product {% endcomment %}
+                                    {% if is_empty_collection %}
+                                    <div class="grid__item small--text-center">
+                                        <p class="text-center"> Sem produtos :(</p>
+                                    </div>
+                                    {% endif %}
+                                {%endfor%}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

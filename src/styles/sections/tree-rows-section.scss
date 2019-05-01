@@ -1,0 +1,12 @@
+.cby-container.books{
+    .row{
+        display: flex;
+        justify-content: center;
+        text-shadow: 0 0 black;
+        flex-wrap: wrap;
+        .box-banner {
+            width: 33%;
+            padding: 30px;
+        }
+    }
+}
