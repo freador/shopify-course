@@ -1,19 +1,16 @@
 
 <div data-section-id="{{ section.id }}" data-section-type="collection-template" class="search-main-section" id="shelf">
-
     <div class="cby-container">
-
         <div class="row">
-
             <div class="search-main fl w-100">
-                <div class="search-results" id="shelf_container" width="100%">
+                <div class="search-results" id="shelf_container" >
                     <div class="shelf-search" id="ResultItems_48">
                         <div class="shelf-search n6colunas">
                             <ul>
-                                {% for product in collection.products %}
-                                    
-                                    {% include 'productCardList3', product: product %}
-                                    
+                                {% for product in collection.products %}                                    
+                                    <li>
+                                        {% include 'productCardList3', product: product %}                                    
+                                    </li>
                                     {% if collection.handle == 'all' and collection.all_vendors.size == 0 and collection.all_types.size == 0%}
                                     {% else %}
                                         {%- assign is_empty_collection = true -%}

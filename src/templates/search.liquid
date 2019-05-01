@@ -1,0 +1,69 @@
+{% paginate search.results by 10 %}
+<div class="page-width search-box">
+  {% if search.performed == false %}
+    <div class="text-center">
+      {% comment %} <h1 class="h2">Search</h1> {% endcomment %}
+  {% else %}
+    <div class="section-header text-center">
+      <h1 class="h2">
+        Search again
+      </h1>
+  {% endif %}
+      <div class="grid">
+        <div class="grid__item medium-up--two-fifths medium-up--push-three-tenths">
+          <form action="/search" method="get" role="search" class="search">
+            <div aria-live="polite" class="form-message form-message--error search-result-error-message hide" data-search-error-message>
+              <ul id="error-search-form">
+                <li>Busca bazia :(</li>
+              </ul>
+            </div>
+
+            <div class="input-group">
+              <input type="search"
+                id="SearchInput"
+                class="input-group__field search__input"
+                name="q"
+                value="{{ search.terms | escape }}"
+                placeholder="search"
+                aria-label="search"
+                >
+              <span class="input-group__btn">
+                <button id="SearchResultSubmit" class="btn search__submit" type="submit">submit</button>
+              </span>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      {% if search.performed and search.results_count == 0 %}
+        <hr class="hr--small hr--invisible" aria-hidden="true" />
+        <div class="rte">
+          <p>Search not found :(</p>
+        </div>
+      {% endif %}
+  </div>
+</div>
+{% if search.performed %}
+  {% if search.results_count > 0 %}
+    <hr aria-hidden="true" />
+  {% endif %}
+  <h2 class="visually-hidden"></h2>
+  <ul class="page-width list-view-items">
+    {% for item in search.results %}
+      <li class="list-view-item">
+          {% if item.object_type == 'product' %}
+            {% include 'productCardList3', product: item %}
+          {% else %}
+            {% include 'productItemList', item: item %}
+            
+          {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+
+  {% if paginate.pages > 1 %}
+    {% include 'pagination' %}
+  {% endif %}
+{% endif %}
+
+{% endpaginate %}

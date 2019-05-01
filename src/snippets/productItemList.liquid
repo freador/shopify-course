@@ -1,0 +1,20 @@
+
+  <div class="product-thumb">
+    <div class="product-image _cby-fake-loaded">
+        <a class="full-width-link imagemVerso" href="{{ item.url | within: collection }}">
+            <img class="list-view-item__image" src="{{ item.image.src | img_url: '95x95', scale: 2 }}">
+        </a>
+        <a class="full-width-link imagemVerso" href="{{ item.url | within: collection }}">
+            <button type="button" class="shelve-buy-button white z-4 pointer absolute left-0 bottom-0 bw0 ttu tc pv2 w-100 bg-black">
+            <span>Read</span>
+            </button>
+        </a>
+    </div>
+    <div class="product-description">
+        <h3 class="product-name">
+            <a title="{{ item.title }}" href="{{ item.url }}">
+                {{ item.title }}
+            </a>
+        </h3>                                     
+    </div>
+  </div>
