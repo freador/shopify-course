@@ -12,13 +12,16 @@
   <meta name="description" content="">
   <script src="{{ 'jquery.min.js' | asset_url }}"></script>
 
-  {% include 'style-tags', layout: 'theme' %}
+  
   {% include 'script-tags', layout: 'theme' %}
+  
 
   {{ content_for_header }}
+
 </head>
 
-<body class="{% if template == "collection" %}search{% endif %}">
+<body class="{% if template == 'collection' %}search{% endif %} 
+{% if template == 'product' %}product{% endif %}">
   {% section 'header' %}
   {{ content_for_layout }}
   {% section 'footerb' %}

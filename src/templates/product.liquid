@@ -1,0 +1,63 @@
+<div class="product-template__container page-width" id="ProductSection-{{ section.id }}"
+    data-section-id="{{ section.id }}" data-section-type="product" data-enable-history-state="true">
+
+    <section class="cby-container-fluid" id="product-container">
+
+        <div class="row">
+            <div class="fl relative w-100 cby_pr_images">
+                <div class="product-name w-100 tc fw7 f4 fw4-ns f5-ns mt2 mb3">
+                    <div class="fn productName  TRUFA-CAIPIRINHA-DE-LIMAO---135-G ">{{product.title}}</div>
+
+                    <div id="product-images">
+                        <img class="list-view-item__image"
+                            src="{{ product.featured_image | img_url: '1000x1000', scale: 2 }}" />
+                    </div>
+                </div>
+            </div>
+            <div class="fl relative w-100 cby_pr_details tc tl-l">
+                <div class="cby_pr_details__wrapper">
+                    <div class="product-name">
+                        <h1>
+                            <div class="fn productName  TRUFA-CAIPIRINHA-DE-LIMAO---135-G ">
+                                {{product.title}}
+                            </div>
+                        </h1>
+                    </div>
+                    {% if product.price > 0%}
+                        <div class="product-price">
+                            <div class="plugin-preco">
+                                <div class="productPrice">
+                                    <p class="descricao-preco">
+                                        <em class="valor-por price-best-price" style="display: inline-block;">
+                                            Por: <strong class="skuBestPrice">
+                                                {{product.price}}
+                                            </strong>
+                                        </em>
+                                    </p>
+                                    <p class="preco-a-vista price-cash" style="display: none;">
+                                        Preço a vista:
+                                        <strong class="skuPrice">R$ 1,10</strong>
+                                    </p>
+                                </div>
+                                <div>
+                                    {% include 'variantImages' %}
+                                </div>
+                                {% form 'product', product, id: variant.id %}
+                                <input type="hidden" class="button-variant-id" name="id"/>
+                                <button type="submit">Add to cart</button>
+                                    {% comment %} {{ form | payment_button }} {% endcomment %}
+                                {% endform %}
+                            </div>
+                        </div>
+                    {% else %}
+                        Sold out
+                    {% endif %}
+                </div>
+                {% include 'ajaxifyCart' %}
+            </div>
+
+        </div>
+
+
+    </section>
+</div>
