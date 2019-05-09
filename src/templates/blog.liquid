@@ -1,0 +1,74 @@
+{% paginate blog.articles by 1 %}
+
+    <div class="page-width">
+        <header class="section-header text-center">
+            <h1>{{ page_title }}</h1>
+        </header>
+    </div>
+
+        <ul class="blog-list-view">
+            {% for article in blog.articles %}
+            <li class="border-top">
+                <div class="page-width">
+                <div class="grid">
+                    <div class="grid__item medium-up--five-sixths medium-up--push-one-twelfth">
+                    <div class="article-listing">
+                        <h2 class="article__title h3"><a href="{{ article.url }}">{{ article.title }}</a></h2>
+                        {% if article.image %}
+                            {% capture img_id %}ArticleImage-{{ article.image.id }}{% endcapture %}
+                            {% capture img_wrapper_id %}ArticleImageWrapper-{{ article.image.id }}{% endcapture %}
+                            {%- assign img_url = article.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}                        
+
+                        <div id="{{ img_wrapper_id }}" class="article__list-image-wrapper js">
+                            <a href="{{ article.url }}" style="padding-top:{{ 1 | divided_by: article.image.aspect_ratio | times: 100 }}%;" class="article__list-image-container">
+                            <img id="{{ img_id }}"
+                                class="article__list-image lazyload"
+                                src="{{ article.image | img_url: '300x300' }}"
+                                data-src="{{ img_url }}"
+                                data-widths="[180, 360, 540, 720, 905, 1090, 1296, 1512, 1728, 2048]"
+                                data-aspectratio="{{ article.image.aspect_ratio }}"
+                                data-sizes="auto"
+                                alt="">
+                            </a>
+                        </div>
+
+                        {% endif %}
+
+                        <div class="rte">
+                        {% if article.excerpt.size > 0 %}
+                            {{ article.excerpt }}
+                        {% else %}
+                            {{ article.content | strip_html | truncate: 150 }}
+                        {% endif %}
+                        </div>
+
+                       
+
+                        <ul class="list--inline article__meta-buttons">
+                        <li>
+                            <a href="{{ article.url }}" class="btn btn--tertiary btn--small" aria-label="{{ 'blogs.article.read_more_title' | t: title: article.title }}">
+                            Read more
+                            </a>
+                        </li>
+
+                        {% if blog.comments_enabled? and article.comments_count > 0 %}
+                            <li>
+                            <a href="{{ article.url }}#comments" class="article__comment-count btn btn--tertiary btn--small">
+                                Comments
+                            </a>
+                            </li>
+                        {% endif %}
+                        </ul>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+
+    {% if paginate.pages > 1 %}
+        {% include 'pagination' %}
+    {% endif %}
+
+{% endpaginate %}

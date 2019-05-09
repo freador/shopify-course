@@ -1,0 +1,8 @@
+<div class="section-header text-center">
+  <h1 class="article__title">{{ article.title }}</h1>
+  <div class="rte">
+    <img src="{{ article.image.src | img_url: '500x' }}"/>
+    <br/>
+    {{ article.content }}
+  </div>  
+</div>
